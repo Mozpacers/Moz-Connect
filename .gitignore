@@ -51,6 +51,7 @@ coverage.xml
 
 # Django stuff:
 *.log
+*.pot
 
 # Sphinx documentation
 docs/_build/
@@ -60,3 +61,12 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+# For all Projects
+*~
+
+# Environment settings
+.env
+
+# Database
+db.sqlite3
