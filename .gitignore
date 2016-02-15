@@ -70,3 +70,4 @@ target/
 
 # Database
 db.sqlite3
+*.bak
