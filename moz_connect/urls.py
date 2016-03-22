@@ -20,6 +20,7 @@ from registrations import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.register),
+    url(r'^save_registeration_form/$', views.save_registeration_form),
 ]
 
 admin.site.site_header = 'Moz-Connect Administration'

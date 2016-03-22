@@ -8,39 +8,67 @@
   <body>
     <div id="back-panel"></div>
     <div class="container">
-    <div id="content">
-      <div class="center-align">
-        <div id="hero-img" width="100%" height="150px"></div>
-        <div id="intro-text">
-          <h1>Welcome to Moz - Connect</h1>
-          <h5>Join the Army of Awesomeness with Mozilla MozPacers now, and start contributing to Open Source</h5>
-          <p>Please fill in the form below to get updates on latest events and happenings by MozPacers</p>
+      <div id="content">
+        <div class="center-align">
+          <div id="hero-img" width="100%" height="150px"></div>
+          <div id="intro-text">
+            <h1>Welcome to Moz - Connect</h1>
+            <h5>Join the Army of Awesomeness with Mozilla MozPacers now, and start contributing to Open Source</h5>
+            <p>Please fill in the form below to get updates on latest events and happenings by MozPacers</p>
+          </div>
         </div>
-      </div>
-      {% include 'material/includes/material_css.html' %}
-      <!-- Making jQuery loading locally till we're running this app locally -->
-      <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
-      <script src="static/js/jQuery.js"></script>
-      {% include 'material/includes/material_js.html' %}
+        {% include 'material/includes/material_css.html' %}
+        <!-- Making jQuery loading locally till we're running this app locally -->
+        <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
+        <script src="static/js/jQuery.js"></script>
+        {% include 'material/includes/material_js.html' %}
 
-      {% load material_form %}
-      <div class="row">
-        <div class="col s8 offset-s2">
-          <form method="POST" action="">
-            {% csrf_token %}
-            {% form %}
-              {% part form.first_name prefix %}<i class="mdi-action-account-box prefix"></i>{% endpart %}
-              {% part form.last_name prefix %}<i class="mdi-action-account-box prefix"></i>{% endpart %}
-              {% part form.email prefix %}<i class="mdi-communication-email prefix"></i>{% endpart %}
-              {% part form.phone_number prefix %}<i class="mdi-communication-call prefix"></i>{% endpart %}
-            {% endform %}
-            <button type="submit" name="_submit" class="btn">Submit</button>
-          </form>
-          {{ message }}
+        {% load material_form %}
+        <div class="row">
+          <div class="col s8 offset-s2">
+            <form method="POST" action="/save_registeration_form/" id="registration-form">
+              {% csrf_token %}
+              {% form form=form %}
+                {% part form.first_name %}
+                  <div class="row">
+                    <div id="id_first_name_container" class="input-field col s12 required">
+                      <i class="mdi-action-account-box prefix"></i>
+                      <input type="text" name="first_name" id="id_first_name" required="required">
+                      <label for="id_first_name">First name</label>
+                    </div>
+                  </div>
+                {% endpart %}
+                {% part form.last_name %}
+                  <div class="row">
+                    <div id="id_last_name_container" class="input-field col s12 required">
+                        <i class="mdi-action-account-box prefix"></i>
+                        <input type="text" name="last_name" id="id_last_name" required="required">
+                        <label for="id_last_name">Last name</label>
+                    </div>
+                  </div>
+                {% endpart %}
+                {% part form.email %}
+                  <div class="row">
+                    <div id="id_email_container" class="input-field col s12 required">
+                        <i class="mdi-communication-email prefix"></i>
+                        <input type="email" name="email" maxlength="254" id="id_email" required="required">
+                        <label for="id_email">Email Address</label>
+                    </div>
+                  </div>
+                {% endpart %}
+                {% part form.phone_number prefix %}<i class="mdi-communication-call prefix"></i>{% endpart %}
+              {% endform %}
+              <button type="submit" name="_submit" class="btn">Submit</button>
+            </form>
+            <span id="status"></span>
+            <div class="progress" id="ajaxProgress">
+              <div class="indeterminate"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>}
+    <script src="static/js/register.js"></script>
   </body>
   <footer class="center-align">
     &copy; 2015-2016 Mozilla Delhi | MozPacers
